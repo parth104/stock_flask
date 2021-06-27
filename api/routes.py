@@ -63,7 +63,6 @@ def login_post():
     if not user:
         return jsonify({"msg": "No user found"}), 401
     check_pass = check_password_hash(user.password, password)
-    print(user.name, user.password, check_pass)
     if username != user.name or not check_pass:
         return jsonify({"msg": "Bad username or password"}), 401
     access_token = create_access_token(identity=username)
@@ -85,7 +84,6 @@ def logout():
 def stocks():
     # Access the identity of the current user with get_jwt_identity
     current_user = get_jwt_identity()
-    print(current_user)
     cmp_name = request.args.get('comp_name')
     data = None
     if cmp_name:
