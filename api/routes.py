@@ -67,7 +67,7 @@ def login_post():
     if username != user.name or not check_pass:
         return jsonify({"msg": "Bad username or password"}), 401
     access_token = create_access_token(identity=username)
-    data = {"a":23}
+    data = None
     resp = make_response(render_template('profile.html', name=username, data=data))
     resp.set_cookie('access_token_cookie', access_token)
     return resp
@@ -87,10 +87,10 @@ def stocks():
     current_user = get_jwt_identity()
     print(current_user)
     cmp_name = request.args.get('comp_name')
-    print(cmp_name)
-    stock_obj = Stock(cmp_name)
-    data = stock_obj.get_info()
-    print(data)
+    data = None
+    if cmp_name:
+        stock_obj = Stock(cmp_name)
+        data = stock_obj.get_info()
     resp = make_response(render_template('profile.html', name=current_user, data=data))
     return resp
 

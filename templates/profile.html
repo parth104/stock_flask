@@ -5,7 +5,6 @@
   Welcome, {{ name }}! 
   <br>
   Hope you are earning well :) !!!
-  Click on Stocks to get some insights
   <script>
     console.log(document.cookie)
   </script>
@@ -14,7 +13,7 @@
     <form method="GET" action="/stocks">
       <div class="field">
           <div class="control">
-              <input class="input is-small" type="text" name="comp_name" placeholder="Enter Company name" autofocus="">
+              <input class="input is-small" type="text" name="comp_name" placeholder="Enter Company name" autofocus="" required>
           </div>
       </div>
       <button class="button is-block is-info is-small">Submit</butt
