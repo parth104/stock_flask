@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+  Welcome, {{ name }}! 
+  <br>
+  Hope you are earning well :) !!!
+  Click on Stocks to get some insights
+  <script>
+    console.log(document.cookie)
+  </script>
+  <br>
+  <div class="box">
+    <form method="GET" action="/stocks">
+      <div class="field">
+          <div class="control">
+              <input class="input is-small" type="text" name="comp_name" placeholder="Enter Company name" autofocus="">
+          </div>
+      </div>
+      <button class="button is-block is-info is-small">Submit</butt
+    </form>
+  </div>
+  {% if data%}
+    <div class="columns">
+      <div class="column">
+        <article class="message">
+          <div class="message-header">
+            <p>Company Name</p>
+          </div>
+          <div class="message-body">
+            {{data.longName}} 
+            <img src={{data.logo_url}}></img>
+          </div>
+        </article>
+        <article class="message">
+          <div class="message-header">
+            <p>Regular Price</p>
+          </div>
+          <div class="message-body">
+            {{data.regularMarketPrice}} {{data.currency}}
+          </div>
+        </article>
+        <article class="message">
+          <div class="message-header">
+            <p>Detailed Information</p>
+          </div>
+          <div class="message-body">
+            <a href="https://groww.in/us-stocks/{{data.symbol}}">Click Here</a>
+          </div>
+        </article>
+      </div>
+      <div class="column">
+        <article class="message">
+          <div class="message-header">
+            <p>Long Business Summary</p>
+          </div>
+          <div class="message-body">
+            {{data.longBusinessSummary}}
+          </div>
+        </article>
+      </div>
+  </div>
+  <div class="columns">
+      <div class="column">
+        
+      </div>
+  </div>
+  {% endif %}
+</h1>
+{% endblock %}
